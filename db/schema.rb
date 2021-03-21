@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_192435) do
+ActiveRecord::Schema.define(version: 2021_03_21_182428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "measuremnents", force: :cascade do |t|
+  create_table "measurements", force: :cascade do |t|
     t.integer "value"
     t.bigint "measure_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["measure_id"], name: "index_measuremnents_on_measure_id"
+    t.index ["measure_id"], name: "index_measurements_on_measure_id"
   end
 
   create_table "measures", force: :cascade do |t|
@@ -59,6 +59,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_192435) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "measuremnents", "measures"
+  add_foreign_key "measurements", "measures"
   add_foreign_key "measures", "users"
 end
