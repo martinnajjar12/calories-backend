@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :measurements
+  has_many :measures
 end
