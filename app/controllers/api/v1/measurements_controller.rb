@@ -3,10 +3,8 @@ class Api::V1::MeasurementsController < ApplicationController
 
   def create
     current_measure = current_user.measures.find_by(name: params[:measure])
-    byebug
     measurement = current_measure.measurements.build(measurement_params)
     measurement.user_id = current_user.id
-
     if measurement.save
       render json: measurement
     else
