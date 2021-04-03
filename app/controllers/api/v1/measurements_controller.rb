@@ -14,9 +14,14 @@ class Api::V1::MeasurementsController < ApplicationController
 
   def show_calories
     calory_object = current_user.measures.find_by(name: 'calories')
-    calories = current_user.measurements.where('measure_id = ?', calory_object.id).order('created_at DESC').limit(7)
+    calories = current_user.measurements.where('measure_id = ?', calory_object.id).order('DATE(created_at) DESC').group('DATE(created_at)').sum(:value)
+    results = []
+    calories.each do |key, value|
+      hash = { created_at: key, value: value }
+      results << hash
+    end
 
-    render json: calories
+    render json: results
   end
 
   private

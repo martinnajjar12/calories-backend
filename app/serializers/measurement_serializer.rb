@@ -1,8 +1,8 @@
 class MeasurementSerializer < ActiveModel::Serializer
-  attributes :id, :value
+  attributes :value, :created_at
 
   belongs_to :user
   class UserSerializer < ActiveModel::Serializer
-    attributes :name
+    attributes :name, :gender
   end
 end
