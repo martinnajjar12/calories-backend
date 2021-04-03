@@ -12,6 +12,13 @@ class Api::V1::MeasurementsController < ApplicationController
     end
   end
 
+  def show_calories
+    calory_object = current_user.measures.find_by(name: 'calories')
+    calories = current_user.measurements.where('measure_id = ?', calory_object.id).order('created_at DESC').limit(7)
+
+    render json: calories
+  end
+
   private
   def measurement_params
     params.permit(:value)

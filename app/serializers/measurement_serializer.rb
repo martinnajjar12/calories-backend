@@ -5,5 +5,4 @@ class MeasurementSerializer < ActiveModel::Serializer
   class UserSerializer < ActiveModel::Serializer
     attributes :name
   end
-  belongs_to :measure
 end
