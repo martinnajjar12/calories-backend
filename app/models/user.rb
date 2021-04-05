@@ -2,6 +2,7 @@
 
 class User < ActiveRecord::Base
   after_create :create_measures
+  after_create :bascal_metabolic_rate
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -21,5 +22,13 @@ class User < ActiveRecord::Base
     proteins.save
     fats.save
     calories.save
+  end
+
+  def bascal_metabolic_rate
+    self.bmr = if gender == 'male'
+            ((weight * 10) + (height * 6.25) - (age * 5) + 5).to_i
+          else
+            ((weight * 10) + (height * 6.25) - (age * 5) - 161).to_i
+          end
   end
 end

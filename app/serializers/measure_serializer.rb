@@ -4,7 +4,7 @@ class MeasureSerializer < ActiveModel::Serializer
   has_many :measurements
   belongs_to :user
   class UserSerializer < ActiveModel::Serializer
-    attributes :name, :gender
+    attributes :name, :gender, :bmr, :activity
   end
 
 end
