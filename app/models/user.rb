@@ -3,6 +3,7 @@
 class User < ActiveRecord::Base
   after_create :create_measures
   after_create :bascal_metabolic_rate
+  validates_presence_of :name, :age, :gender, :height, :weight, :activity
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
