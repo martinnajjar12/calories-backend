@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :measures
+      get '/measures', to: 'measures#index'
       get '/calories', :to => 'measurements#show_calories'
     end
   end
