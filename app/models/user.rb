@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ActiveRecord::Base
   after_create :create_measures
   after_create :bascal_metabolic_rate
@@ -14,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :measures
 
   private
+
   def create_measures
     carbohydrates = measures.build(name: 'carbohydrates')
     proteins = measures.build(name: 'proteins')
@@ -27,9 +26,9 @@ class User < ActiveRecord::Base
 
   def bascal_metabolic_rate
     self.bmr = if gender == 'male'
-            ((weight * 10) + (height * 6.25) - (age * 5) + 5).to_i
-          else
-            ((weight * 10) + (height * 6.25) - (age * 5) - 161).to_i
-          end
+                 ((weight * 10) + (height * 6.25) - (age * 5) + 5).to_i
+               else
+                 ((weight * 10) + (height * 6.25) - (age * 5) - 161).to_i
+               end
   end
 end

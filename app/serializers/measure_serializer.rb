@@ -6,5 +6,4 @@ class MeasureSerializer < ActiveModel::Serializer
   class UserSerializer < ActiveModel::Serializer
     attributes :name, :gender, :bmr, :activity
   end
-
 end

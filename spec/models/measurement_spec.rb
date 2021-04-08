@@ -6,4 +6,4 @@ RSpec.describe Measurement, type: :model do
 
     it { should belong_to(:measure) }
   end
- end
+end
