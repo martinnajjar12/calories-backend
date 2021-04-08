@@ -12,7 +12,7 @@ class Api::V1::MeasuresController < ApplicationController
     if measure.save
       render json: measure
     else
-      render json: { error: 'This is not allowed' }
+      render json: { error: "You're not authorized!!" }
     end
   end
 end
