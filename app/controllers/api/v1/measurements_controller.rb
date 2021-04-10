@@ -6,9 +6,9 @@ class Api::V1::MeasurementsController < ApplicationController
     measurement = current_measure.measurements.build(measurement_params)
     measurement.user_id = current_user.id
     if measurement.save
-      render json: measurement
+      render json: measurement, status: 201
     else
-      render json: { error: measurement.errors.messages }, status: 422
+      render json: measurement.errors, status: 422
     end
   end
 
@@ -22,7 +22,7 @@ class Api::V1::MeasurementsController < ApplicationController
       results << hash
     end
 
-    render json: results
+    render json: results, status: 200
   end
 
   private

@@ -6,4 +6,8 @@ RSpec.describe Measurement, type: :model do
 
     it { should belong_to(:measure) }
   end
+
+  describe 'validation' do
+    it { should validate_presence_of(:value) }
+  end
 end
