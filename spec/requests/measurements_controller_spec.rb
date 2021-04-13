@@ -30,4 +30,30 @@ RSpec.describe Api::V1::MeasurementsController, type: :request do
       end
     end
   end
+
+  describe 'POST /api/v1/measurements/create' do
+    before(:each) do
+      @current_user = create(:user)
+    end
+
+    context 'successful request' do
+      it 'returns 201 when the measures is created' do
+        login
+        auth_params = get_auth_params_from_login_response_headers(response)
+        post '/api/v1/measurements/create', params: { value: 25, measure: 'carbohydrates' }, headers: auth_params
+  
+        expect(response).to have_http_status(:created)
+      end
+    end
+
+    context 'unsuccessful request' do
+      it "returns 422 when the user doesn't submit a value" do
+        login
+        auth_params = get_auth_params_from_login_response_headers(response)
+        post '/api/v1/measurements/create', params: { measure: 'carbohydrates' }, headers: auth_params
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
 end
