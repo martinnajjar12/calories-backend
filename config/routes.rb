@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      post 'measurements/create'
-      get '/measures', to: 'measures#index'
-      get '/calories', :to => 'measurements#show_calories'
+      resources :measures, only: [:index, :show]
+      resources :measurements, only: [:create]
     end
   end
   mount_devise_token_auth_for 'User', at: 'auth'

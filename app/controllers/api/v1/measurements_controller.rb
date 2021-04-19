@@ -12,19 +12,6 @@ class Api::V1::MeasurementsController < ApplicationController
     end
   end
 
-  def show_calories
-    calory_object = current_user.measures.find_by(name: 'calories')
-    calories = current_user.measurements.calories_grouped_by_date(calory_object)
-
-    results = []
-    calories&.first(5)&.each do |key, value|
-      hash = { created_at: key, value: value }
-      results << hash
-    end
-
-    render json: results, status: 200
-  end
-
   private
 
   def measurement_params
